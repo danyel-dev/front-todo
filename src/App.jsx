@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Lists from "./components/Lists";
 
 
 export default function App() {
@@ -14,17 +15,15 @@ export default function App() {
       }
     }
 
-    config.headers["Authorization"] = "Token 8da3bde513b8d930a7c2d6a2f9f56c0185db4c0a"
+    config.headers["Authorization"] = "Token c65af014e59fd25d9e0d4cf66351effe0cf6685a"
 
     axios.get(BASE_URL + "Lists", config)
     .then(response => setLists(response.data))
   }, [])
-  
-  console.log(lists)
 
   return (
     <div className="App">
-      <h1>oi</h1>
+      {lists.map(list => <Lists key={list.id} list={list} />)}
     </div>
   );
 }
