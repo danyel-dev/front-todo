@@ -3,6 +3,8 @@ import axios from "axios";
 import UserLists from '../UserLists'
 
 
+const URL = 'http://127.0.0.1:8000/api-token-auth/'
+
 export default function Login() {
     const [token, setToken] = useState("")
 
@@ -13,7 +15,7 @@ export default function Login() {
     function handleSubmitForm(event) {
         event.preventDefault()
         
-        axios.post('http://127.0.0.1:8000/api-token-auth/', {username:username, password: password}
+        axios.post(URL, {username:username, password: password}
         ).then(response => {
             localStorage.setItem('token', response.data.token)
             setToken(response.data.token)

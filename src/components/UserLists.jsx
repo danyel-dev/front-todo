@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Lists from "./components/Lists";
+import Lists from "./Lists";
 
 
 export default function UserLists() {
