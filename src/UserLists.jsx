@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Lists from "./components/Lists";
 
 
-export default function App() {
+export default function UserLists() {
   const BASE_URL = "http://127.0.0.1:8000/";
 
   const [lists, setLists] = useState([]);
@@ -11,18 +11,17 @@ export default function App() {
   useEffect(() => {
     const config = {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": 'token ' + localStorage.getItem('token')
       }
     }
 
-    config.headers["Authorization"] = "Token c65af014e59fd25d9e0d4cf66351effe0cf6685a"
-
-    axios.get(BASE_URL + "Lists", config)
+    axios.get(BASE_URL + "list", config)
     .then(response => setLists(response.data))
   }, [])
 
   return (
-    <div className="App">
+    <div>
       {lists.map(list => <Lists key={list.id} list={list} />)}
     </div>
   );
